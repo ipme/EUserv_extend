@@ -123,6 +123,14 @@ if __name__ == "__main__":
         sessid, s = login(user_list[i], passwd_list[i])
         if sessid == '-1':
             print("第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
+            #SCKEY
+            sckey = '自己填'
+            # 接口地址
+            url = 'http://sc.ftqq.com/' + sckey +'.send'
+            # 请求的参数数据
+            text = {'text':'有账号续期失败','desp':'请到github查看日志'}
+            # 发送请求
+            r = requests.get(url,params=text)
             continue
         SERVERS = get_servers(sessid, s)
         print("检测到第 {} 个账号有 {} 台VPS，正在尝试续期".format(i + 1, len(SERVERS)))
